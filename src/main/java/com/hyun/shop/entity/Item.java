@@ -1,6 +1,7 @@
 package com.hyun.shop.entity;
 
 import com.hyun.shop.constant.ItemSellStatus;
+import com.hyun.shop.dto.ItemFormDto;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,7 +14,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @ToString
-public class Item {
+public class Item extends BaseEntity {
 
     @Id
     @Column(name = "item_id")
@@ -40,4 +41,11 @@ public class Item {
 
     private LocalDateTime updateTime;           // 상품 수정 시간
 
+    public void updateItem(ItemFormDto itemFormDto){
+        this.itemName = itemFormDto.getItemName();
+        this.price = itemFormDto.getPrice();
+        this.stockNumber = itemFormDto.getStockNumber();
+        this.itemDetail = itemFormDto.getItemDetail();
+        this.itemSellStatus = itemFormDto.getItemSellStatus();
+    }
 }
