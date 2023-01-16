@@ -14,17 +14,17 @@ public class MainItemDto {
 
     private String itemDetail;
 
-    private String itemUrl;
+    private String imgUrl;
 
     private Integer price;
 
     @QueryProjection
-    public MainItemDto(Long id, String itemName, String itemDetail, String itemUrl, Integer price){
+    public MainItemDto(Long id, String itemName, String itemDetail, String imgUrl, Integer price){
 
         this.id = id;
         this.itemName = itemName;
         this.itemDetail = itemDetail;
-        this.itemUrl = itemUrl;
+        this.imgUrl = imgUrl;
         this.price = price;
     }
 }

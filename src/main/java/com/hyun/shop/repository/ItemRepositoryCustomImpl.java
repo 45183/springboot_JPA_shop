@@ -7,7 +7,6 @@ import com.hyun.shop.dto.QMainItemDto;
 import com.hyun.shop.entity.Item;
 import com.hyun.shop.entity.QItem;
 import com.hyun.shop.entity.QItemImg;
-import com.querydsl.core.QueryResults;
 import com.querydsl.core.types.dsl.BooleanExpression;
 import com.querydsl.core.types.dsl.Wildcard;
 import com.querydsl.jpa.impl.JPAQueryFactory;
@@ -32,7 +31,6 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
         return searchSellStatus == null ? null : QItem.item.itemSellStatus.eq(searchSellStatus);
     }
 
-
     private BooleanExpression regDtsAfter(String searchDateType){
 
         LocalDateTime dateTime = LocalDateTime.now();
@@ -54,7 +52,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
 
     private BooleanExpression searchByLike(String searchBy, String searchQuery){
 
-        if(StringUtils.equals("itemNm", searchBy)){
+        if(StringUtils.equals("itemName", searchBy)){
             return QItem.item.itemName.like("%" + searchQuery + "%");
         } else if(StringUtils.equals("createdBy", searchBy)){
             return QItem.item.createdBy.like("%" + searchQuery + "%");
@@ -92,8 +90,7 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
     }
 
     @Override
-    public Page<MainItemDto> getMainItemPage(ItemSearchDto itemSearchDto, Pageable pageable){
-
+    public Page<MainItemDto> getMainItemPage(ItemSearchDto itemSearchDto, Pageable pageable) {
         QItem item = QItem.item;
         QItemImg itemImg = QItemImg.itemImg;
 
@@ -126,4 +123,5 @@ public class ItemRepositoryCustomImpl implements ItemRepositoryCustom{
 
         return new PageImpl<>(content, pageable, total);
     }
+
 }
